@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Classrooms - {% block title_extension %}{% endblock %}</title>
 
     <!-- Latest compiled and minified CSS -->
@@ -16,7 +18,7 @@
 <body>
 
 <!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top navbar-inverse"
+<nav class="navbar navbar-default navbar-inverse"
      style="background-color:#000000; height:60px; padding-top:5px;">
     <div class="container">
         <div class="navbar-header">
@@ -28,8 +30,8 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/brake-logo1.png' %}"
-                                                              style="margin-top:-15px;"/></a>
+{#        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/brake-logo1.png' %}"#}
+{#                                                              style="margin-top:-15px;"/></a>#}
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav" style="font-weight:bold;">
                 <li class="active"><a href="#"><i
