@@ -16,3 +16,18 @@
     position: absolute;
     bottom: 0;
 }
+.test {
+    margin-top: 4vh !important;
+    width: 20vw !important;
+    height: 15vw;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+.project-box {
+    margin-top: 4vh !important;
+    width: 50vw !important;
+    height: 15vw;
+    margin: 0 auto;
+    border: 1px solid black;
+}
