@@ -6,6 +6,7 @@ urlpatterns = [
         url('^walking/', views.walking, name='walking'),
         url('^cycling/', views.cycling, name='cycling'),
         #url('^car-safety/', views.car_safety, name='car_safety'),
-        url('^project/', views.project, name='project')
+        url('^project/', views.project, name='project'),
+        url('^quiz/', views.quiz, name='quiz'),
         ]
 

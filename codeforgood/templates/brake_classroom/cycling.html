@@ -1,54 +1,7 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-4 text-center">
-                <div class="test">
-                    <a href="#">
 
-                    <img src="{% static 'images/walking.jpg' %}" class="thumbnail img-responsive section">
 
-                </a>
-                </div>
-            </div>
-            <div class="col-xs-4 text-center">
-                <div class="test">
-                   <a href= "#">
-                <img src="{% static 'images/bike-final.jpg' %}" class="thumbnail img-responsive section">
-                </a>
-                </div>
-            </div>
-            <div class="col-xs-4 text-center">
-                <div class="test">
-                    <a href="#">
-                    <img src="{% static 'images/car-final.jpg'%}" class="thumbnail img-responsive section">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4 text-center">
-                <div class="test">
-                    <a href="#">
-                    <img src="{% static 'images/road-final.jpg'%}" class="thumbnail img-responsive section">
-                </a>
-                </div>
-            </div>
-            <div class="col-xs-8 text-center">
-                <div class="project-box">
-                    <a href="#">
-                    <img src="{% static 'images/project.jpg'%}" class="thumbnail img-responsive section">
-                        </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-{% endblock %}
-
-{% block static_per_page %}
-    <script src="{% static 'js/projects.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/projects.css' %}"/>
 {% endblock %}
