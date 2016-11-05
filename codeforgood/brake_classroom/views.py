@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from brake_classroom.models import Question, Level
+
 
 def index(request):
 
