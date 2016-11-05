@@ -1,11 +1,10 @@
-
 .navbar-default {
-    background-color: #d90425;
-    border-color: #821622;
+    background-color: #ec1c24;
+    border-color: #c82032;
 }
 
 .navbar-default .navbar-brand {
-    color: #ecf0f1;
+    color: #f0f5f7;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -14,11 +13,11 @@
 }
 
 .navbar-default .navbar-text {
-    color: #ecf0f1;
+    color: #f0f5f7;
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #ecf0f1;
+    color: #f0f5f7;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
@@ -30,36 +29,36 @@
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
     color: #ecdbff;
-    background-color: #821622;
+    background-color: #c82032;
 }
 
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
     color: #ecdbff;
-    background-color: #821622;
+    background-color: #c82032;
 }
 
 .navbar-default .navbar-toggle {
-    border-color: #821622;
+    border-color: #c82032;
 }
 
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-    background-color: #821622;
+    background-color: #c82032;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #ecf0f1;
+    background-color: #f0f5f7;
 }
 
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-    border-color: #ecf0f1;
+    border-color: #f0f5f7;
 }
 
 .navbar-default .navbar-link {
-    color: #ecf0f1;
+    color: #f0f5f7;
 }
 
 .navbar-default .navbar-link:hover {
@@ -68,7 +67,7 @@
 
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #ecf0f1;
+        color: #f0f5f7;
     }
 
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
@@ -80,6 +79,6 @@
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
         color: #ecdbff;
-        background-color: #821622;
+        background-color: #c82032;
     }
 }
