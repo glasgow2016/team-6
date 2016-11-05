@@ -39,17 +39,7 @@
 {#    </div>#}
 
 
-    <div class="row">
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <a href="#">
-                    {% if category.photo %}
-                        <img src="/media/{{ category.photo }}" class="thumbnail img-responsive">
-                    {% else %}
-                        <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
-                    {% endif %}
-                    <div class="carousel-caption"><h3>{{ category.name }}</h3></div>
-                </a>
-            </div>
+    <div class="row-fluid">
             <div class="col-lg-4 col-sm-6 col-xs-12">
                 <a href="#">
                     {% if category.photo %}
@@ -81,7 +71,19 @@
                 </a>
             </div>
 
-        <div class="col-lg-4 col-sm-6 col-xs-12 pull-right">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4 col-sm-6 col-xs-12 offset1">
+                <a href="#">
+                    {% if category.photo %}
+                        <img src="/media/{{ category.photo }}" class="thumbnail img-responsive">
+                    {% else %}
+                        <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+                    {% endif %}
+                    <div class="carousel-caption"><h3>{{ category.name }}</h3></div>
+                </a>
+            </div>
+
+        <div class="col-lg-4 col-sm-6 col-xs-12">
             <a href="#">
                 {% if category.photo %}
                     <img src="/media/{{ category.photo }}" class="thumbnail img-responsive">
@@ -91,6 +93,8 @@
                 <div class="carousel-caption"><h3>{{ category.name }}</h3></div>
             </a>
         </div>
+
+        <div class="col-lg-2"></div>
     </div>
 {% endblock %}
 
