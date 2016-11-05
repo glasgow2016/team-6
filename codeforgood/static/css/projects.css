@@ -16,3 +16,8 @@
     position: absolute;
     bottom: 0;
 }
+
+.section {
+    border: 7px solid #ec1c24;
+    padding: 0;
+}
