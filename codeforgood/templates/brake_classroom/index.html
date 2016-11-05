@@ -5,45 +5,81 @@
     Index
 {% endblock %}
 
+{% block css_per_page %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+{% endblock %}
+
 {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 text-center">
+                <div class="learning-box">
+                    <a href="{% url 'walking' %}">
 
-    <div class="row-fluid">
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <a href="#">
 
-                    <img src="{% static 'images/car.jpg' %}" class="thumbnail img-responsive">
+                        
 
-                </a>
+                        <img src="{% static 'images/walking.jpg' %}" class="thumbnail img-responsive section">
+
+                    </a>
+                </div>
             </div>
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <a href= "#">
-                <img src="{% static 'images/bike copy copy.jpg' %}" class="thumbnail img-responsive">
-                </a>
+            <div class="col-xs-4 text-center">
+                <div class="learning-box">
+                    <a href="{% url 'cycling' %}">
+                        <img src="{% static 'images/bike-final.jpg' %}" class="thumbnail img-responsive section">
+                    </a>
+                </div>
             </div>
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <a href="#">
-                    <img src="{% static 'images/car.jpg'%}" class="thumbnail img-responsive">
-
-                </a>
-            </div>
-
-            <div class="col-lg-2"></div>
-            <div class="col-lg-4 col-sm-6 col-xs-12 offset1">
+            <div class="col-xs-4 text-center">
+                <div class="learning-box">
                     <a href="#">
-                    <img src="{% static 'images/car.jpg'%}" class="thumbnail img-responsive">
-                </a>
+                        <img src="{% static 'images/car-final.jpg' %}" class="thumbnail img-responsive section">
+                    </a>
+                </div>
             </div>
-
-        <div class="col-lg-4 col-sm-6 col-xs-12">
-                <a href="#">
-                    <img src="{% static 'images/car.jpg'%}" class="thumbnail img-responsive">
-
-
-            </a>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 text-center">
+                <h2><strong>Walking</strong></h2>
+            </div>
+            <div class="col-xs-4 text-center">
+                <h2><strong>Cycling</strong></h2>
+            </div>
+            <div class="col-xs-4 text-center">
+                <h2><strong>Driving</strong></h2>
+            </div>
         </div>
 
-        <div class="col-lg-2"></div>
+        <div class="row">
+        <div class="col-xs-4 text-center">
+            <div class="learning-box">
+                <a href="#">
+                    <img src="{% static 'images/road-final.jpg' %}" class="thumbnail img-responsive section">
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-8 text-center">
+            <div class="project-box">
+                <a href="{% url 'project' %}">
+                    <img src="{% static 'images/project.jpg' %}" class="thumbnail img-responsive section">
+                </a>
+            </div>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <h2><strong>Roads</strong></h2>
+        </div>
+        <div class="col-xs-8 text-center">
+            <h2><strong>Project</strong></h2>
+        </div>
+    </div>
+
+    </div>
+
+
 {% endblock %}
 
 

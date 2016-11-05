@@ -1,11 +1,13 @@
 from django.db import models
 
+
 # Create your models here.
 class Level(models.Model):
     level = models.IntegerField()
 
     def __unicode__(self):
         return self.level
+
 
 class Question(models.Model):
     question_title = models.TextField(max_length=500)
@@ -19,9 +21,8 @@ class Question(models.Model):
     def __unicode__(self):
         return self.question_title
 
+
 class Project(models.Model):
     co2_saved = models.FloatField()
     milage = models.FloatField()
     money_saved = models.FloatField()
-
-

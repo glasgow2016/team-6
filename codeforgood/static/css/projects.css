@@ -1,29 +1,3 @@
-.glass {
-    margin: 30px auto;
-    height: 300px;
-    width: 100px;
-    position: relative;
-    border-style: none solid solid solid;
-    border-width: 10px;
-    border-color: lightgray;
-    border-radius: 10px;
-}
-
-.water {
-    width: 100%;
-    height: 10%;
-    background-color: skyblue;
-    position: absolute;
-    bottom: 0;
-}
-.test {
-    margin-top: 4vh !important;
-    width: 20vw !important;
-    height: 15vw;
-    margin: 0 auto;
-    border: 1px solid black;
-}
-
 .project-box {
     margin-top: 4vh !important;
     width: 50vw !important;
