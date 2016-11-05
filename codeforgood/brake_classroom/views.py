@@ -14,7 +14,8 @@ def quiz(request):
 
     questions = Question.objects.order_by('number')
     if request.is_ajax():
-        # answer = request.GET['answer']
+        pass
+        #answer = request.GET['answer']
     return render(request, 'brake_classroom/quiz.html', {'questions': questions})
 
 def cycling(request):
