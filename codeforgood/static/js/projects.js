@@ -3,7 +3,7 @@ $(function(){
     console.log("here");
 
     $('.water').animate({
-        height: '75%'
+        height: '25%'
     }, 1000);
 
 
@@ -20,6 +20,8 @@ function addNewDistance() {
     let target_distance = 2000;
     let new_distance = $("#new-distance-input").val();
     console.log(new_distance);
+
+
 
     return false;
 
