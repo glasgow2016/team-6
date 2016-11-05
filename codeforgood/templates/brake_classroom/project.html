@@ -2,26 +2,24 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-4">
-                <img src="{% static 'images/test.svg'%}" style="width: 200px; height: 200px; border: none;" class="thumbnail img-responsive">
+    <div class="row">
+        <div class="col-xs-4">
+            <img src="{% static 'images/test.svg'%}" style="width: 200px; height: 200px; border: none;" class="thumbnail img-responsive">
+        </div>
+        <div class="col-xs-4">
+            <div class="glass">
+                <div class="water"></div>
             </div>
-            <div class="col-xs-4">
-                <div class="glass">
-                    <div class="water"></div>
+            <form id="add-new-distance" onsubmit="return addNewDistance();">
+                <div class="form-group">
+                    <label for="new-distance-input">Add to the goal</label>
+                    <input id="new-distance-input" class="form-control"/>
+                    <input type="submit" value="Add"/>
                 </div>
-                <form id="add-new-distance" onsubmit="return addNewDistance();">
-                    <div class="form-group">
-                        <label for="new-distance-input">Add to the goal</label>
-                        <input id="new-distance-input" class="form-control"/>
-                        <input type="submit" value="Add"/>
-                    </div>
-                </form>
-            </div>
-            <div class="col-xs-4">
-                <img src="{% static 'images/noun_16715_cc.svg'%}" style="width: 200px; height: 200px; border: none;" class="thumbnail img-responsive">
-            </div>
+            </form>
+        </div>
+        <div class="col-xs-4">
+            <img src="{% static 'images/noun_16715_cc.svg'%}" style="width: 200px; height: 200px; border: none;" class="thumbnail img-responsive">
         </div>
     </div>
 
