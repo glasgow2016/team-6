@@ -17,26 +17,3 @@
     bottom: 0;
 }
 
-.section {
-            border: 7px solid #ec1c24;
-            padding: 0;
-        }
-.test {
-    margin-top: 4vh !important;
-    width: 20vw !important;
-    height: 15vw;
-    margin: 0 auto;
-    border: 0px solid black;
-}
-
-.project-box {
-    margin-top: 4vh !important;
-    width: 50vw !important;
-    height: 15vw;
-    margin: 0 auto;
-    border: 0px solid black;
-}
-
-h2 {
-    color: #ec1c24;
-}

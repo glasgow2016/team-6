@@ -5,12 +5,16 @@
     Index
 {% endblock %}
 
+{% block css_per_page %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-xs-4 text-center">
-                <div class="test">
-                    <a href="#">
+                <div class="learning-box">
+                    <a href="{% url 'walking' %}">
 
                         <img src="{% static 'images/walking.jpg' %}" class="thumbnail img-responsive section">
 
@@ -18,14 +22,14 @@
                 </div>
             </div>
             <div class="col-xs-4 text-center">
-                <div class="test">
-                    <a href="#">
+                <div class="learning-box">
+                    <a href="{% url 'cycling' %}">
                         <img src="{% static 'images/bike-final.jpg' %}" class="thumbnail img-responsive section">
                     </a>
                 </div>
             </div>
             <div class="col-xs-4 text-center">
-                <div class="test">
+                <div class="learning-box">
                     <a href="#">
                         <img src="{% static 'images/car-final.jpg' %}" class="thumbnail img-responsive section">
                     </a>
@@ -46,7 +50,7 @@
 
         <div class="row">
         <div class="col-xs-4 text-center">
-            <div class="test">
+            <div class="learning-box">
                 <a href="#">
                     <img src="{% static 'images/road-final.jpg' %}" class="thumbnail img-responsive section">
                 </a>
@@ -54,7 +58,7 @@
         </div>
         <div class="col-xs-8 text-center">
             <div class="project-box">
-                <a href="#">
+                <a href="{% url 'project' %}">
                     <img src="{% static 'images/project.jpg' %}" class="thumbnail img-responsive section">
                 </a>
             </div>
@@ -69,7 +73,7 @@
             <h2><strong>Project</strong></h2>
         </div>
     </div>
-    
+
     </div>
 
 
