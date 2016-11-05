@@ -2,24 +2,36 @@
 {% load staticfiles %}
 
 {% block content %}
+    <div class="row heading-row text-center">
+        <h1>Class Project</h1>
+    </div>
     <div class="row">
-        <div class="col-xs-4">
-            <img src="{% static 'images/test.svg'%}" style="width: 200px; height: 200px; border: none;" class="thumbnail img-responsive">
-        </div>
-        <div class="col-xs-4">
-            <div class="glass">
-                <div class="water"></div>
-            </div>
-            <form id="add-new-distance" onsubmit="return addNewDistance();">
+        <div class="col-xs-12 text-center">
+            <h3>Our goal: 1000 miles</h3>
+            <form class="form-inline" id="add-new-distance" onsubmit="return addNewDistance();">
                 <div class="form-group">
-                    <label for="new-distance-input">Add to the goal</label>
+                    <label for="new-distance-input">Add</label>
                     <input id="new-distance-input" class="form-control"/>
-                    <input type="submit" value="Add"/>
+                    <label>to the goal.</label>
                 </div>
             </form>
+            <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+            <div id="progress-circle-container"></div>
         </div>
-        <div class="col-xs-4">
-            <img src="{% static 'images/noun_16715_cc.svg'%}" style="width: 200px; height: 200px; border: none;" class="thumbnail img-responsive">
+    </div>
+    <div class="row">
+        <div class="col-xs-6 text-center">
+            <h3>Kilograms of CO2 we have saved:</h3>
+            <div class="cloud-container">
+                <img src="{% static 'images/test.svg'%}" style="width: 200px; height: 200px; border: none;">
+            </div>
+            <p class="co2-text">this is a test</p>
+        </div>
+        <div class="col-xs-6 text-center">
+            <h3>We have saved 50 pounds of gas money!</h3>
+            <div class="dollar-container">
+                <img src="{% static 'images/noun_16715_cc.svg'%}" style="width: 200px; height: 200px; border: none;">
+            </div>
         </div>
     </div>
 
@@ -27,5 +39,7 @@
 
 {% block static_per_page %}
     <script src="{% static 'js/projects.js' %}"></script>
+    <script src="{% static 'js/progress.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/projects.css' %}"/>
+
 {% endblock %}
