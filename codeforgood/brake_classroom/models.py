@@ -10,6 +10,7 @@ class Level(models.Model):
 
 
 class Question(models.Model):
+    number = models.IntegerField()
     question_title = models.TextField(max_length=500)
     right_answer = models.CharField(max_length=128)
     wrong_answer1 = models.CharField(max_length=128)
