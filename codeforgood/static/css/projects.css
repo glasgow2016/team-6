@@ -1,19 +1,38 @@
-.glass {
-    margin: 30px auto;
-    height: 300px;
-    width: 100px;
+.project-box {
+    margin-top: 4vh !important;
+    width: 50vw !important;
+    height: 15vw;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+#progress-circle-container {
+    margin: 20px;
+    width: 200px;
+    height: 200px;
     position: relative;
-    border-style: none solid solid solid;
-    border-width: 10px;
-    border-color: lightgray;
-    border-radius: 10px;
+    margin: 0 auto;
 }
 
-.water {
+.cloud-container,
+.co2-text {
     width: 100%;
-    height: 10%;
-    background-color: skyblue;
+    height: 100%;
     position: absolute;
-    bottom: 0;
+    top: 0;
+    left: 0;
 }
 
+.cloud-container {
+    margin-top: 50px;
+}
+
+.co2-text {
+    margin-top: 125px;
+    z-index: 10;
+    font-weight: 600;
+}
+
+#add-new-distance {
+    margin-bottom: 20px;
+}
