@@ -40,7 +40,7 @@ $(function () {
 
         //let goal_achieved = parseInt($("#goal-achieved").text());
         let goal_achieved = parseInt($("#goal-achieved").attr('value'));
-        let percentage_achieved = goal_achieved/target_distance;
+        let percentage_achieved = goal_achieved / target_distance;
         bar.animate(percentage_achieved);  // Number from 0.0 to 1.0
     }
 });
@@ -69,47 +69,60 @@ $(function () {
 
 function addNewDistance() {
     let target_distance = parseInt($("#goal").text());
-    let new_distance = $("#new-distance-input").val();
+    let new_distance = parseInt($("#new-distance-input").val());
+    var current_distance = parseInt($("#goal-achieved").attr('value'));
+    $('#goal-achieved').attr('value', new_distance + current_distance);
+    var full_distance = new_distance + current_distance;
+    console.log("New distance is " + new_distance + " current distance is " + current_distance);
+    console.log(full_distance);
 
     if (!isInt(new_distance)) {
         return false;
     }
-    let new_percentage = new_distance/target_distance;
+    let new_percentage = new_distance / target_distance;
     let existing_percentage = 0;
-    if(!bar['text']['firstChild']) {
+    if (!bar['text']['firstChild']) {
         existing_percentage = 0;
     } else {
         existing_percentage = bar['text']['firstChild']['data'] / target_distance;
     }
-    console.log("The target distance is " + target_distance + " the new distance is " + new_distance + " and the current one is " + existing_percentage);
     // updates the progress chart
-        var newCO2;
-        var newMoney;
-        if(new_percentage + existing_percentage >= 1) {
-            newCO2 = updateCO2(target_distance);
-            newMoney = updateMoney(target_distance);
-            bar.animate(1);
-        } else {
-            bar.animate(new_percentage + existing_percentage);
-            newCO2 = updateCO2(new_distance);
-            newMoney = updateMoney(new_distance);
+    var done = false;
+    var newCO2;
+    var newMoney;
+    if (new_percentage + existing_percentage >= 1) {
+        done = true;
+        newCO2 = updateCO2(target_distance);
+        newMoney = updateMoney(target_distance);
+        bar.animate(1);
+    } else {
+        bar.animate(new_percentage + existing_percentage);
+        newCO2 = updateCO2(new_distance);
+        newMoney = updateMoney(new_distance);
+    }
+
+    var project_id = $('#project_id').attr('value');
+    /* update the database */
+    $.ajax({
+        type: "GET",
+        url: '/update_performance/',
+        data: {
+            'new_distance': new_distance,
+            'project_id': project_id,
+            'newCO2': newCO2,
+            'newMoney': newMoney
+        },
+        success: function (data) {
+
         }
-        
-        var project_id = $('#project_id').attr('value');
-        /* update the database */
-        $.ajax({
-            type: "GET",
-            url: '/update_performance/',
-            data: {
-                'new_distance': new_distance,
-                'project_id': project_id,
-                'newCO2': newCO2,
-                'newMoney': newMoney
-            },
-            success: function(data) {
-                console.log("Successfully updated the database");
-            }
-        });
+    });
+
+    if(done) {
+        $('#modal-co2-report').html(newCO2);
+        $('#modal-cash-report').html(newMoney);
+        $('#modal-miles-report').html(full_distance);
+        $('#success-modal').modal('show');
+    }
 
     return false;
 }
@@ -121,7 +134,7 @@ function updateCO2(new_distance) {
     // driven would amount to 0.6kg.
 
     let existing_co2 = parseInt($('#co2-text').text());
-    let new_co2 = parseInt(new_distance)*0.6 + existing_co2
+    let new_co2 = parseInt(new_distance) * 0.6 + existing_co2;
     $('#co2-text').text(new_co2);
     return new_co2;
 
@@ -135,14 +148,13 @@ function updateMoney(new_distance) {
     // Average mile not driven saves 0.22 pence
 
     let existing_dollar = parseInt($('#dollar-text').text());
-    let new_dollar = parseInt(new_distance)*0.22 + existing_dollar
+    let new_dollar = parseInt(new_distance) * 0.22 + existing_dollar
     $('#dollar-text').text(new_dollar);
     return new_dollar;
 }
 
 // Stackoverflow rules!
 function isInt(value) {
-  return !isNaN(value) &&
-         parseInt(Number(value)) == value &&
-         !isNaN(parseInt(value, 10));
+    return !isNaN(value) &&
+        parseInt(Number(value)) == value && !isNaN(parseInt(value, 10));
 }

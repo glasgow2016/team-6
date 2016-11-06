@@ -80,4 +80,4 @@ def update_performance(request):
         print("new co2 saved is %f" % the_project.co2_saved)
         the_project.save()
 
-        return JsonResponse({'response': 'success'})
+        return JsonResponse({'full_distance_covered': the_project.goal_achieved})
