@@ -15,6 +15,8 @@ $(function(){
         console.log("Stopped form submission");
     });
 
+    let target_distance = parseInt($("#goal").text());
+
     bar = new ProgressBar.Circle("#progress-circle-container", {
         color: '#aaa',
         // This has to be the same size as the maximum width to
@@ -32,7 +34,7 @@ $(function(){
         step: function(state, circle) {
             circle.path.setAttribute('stroke', state.color);
             circle.path.setAttribute('stroke-width', state.width);
-            var value = Math.round(circle.value() * 2000);
+            var value = Math.round(circle.value() * target_distance);
             if (value === 0) {
               circle.setText('');
             } else {
@@ -51,7 +53,7 @@ $(function(){
 // takes care that the necessary parts of the page are updated
 function addNewDistance() {
 
-    let target_distance = 2000;
+    let target_distance = parseInt($("#goal").text());
     let new_distance = $("#new-distance-input").val();
 
     if (!isInt(new_distance)) {
@@ -72,15 +74,24 @@ function addNewDistance() {
 
 function updateCO2(new_distance) {
 
+    // An average day without a car saves 26lbs of CO2 ~ 12kg
+    // Assuming an average day is with a car is 20 miles, a mile not
+    // driven would amount to 0.6kg.
+
     let existing_co2 = parseInt($('#co2-text').text());
-    $('#co2-text').text(parseInt(new_distance) + existing_co2);
+    $('#co2-text').text(parseInt(new_distance)*0.6 + existing_co2);
 
 }
 
 function updateMoney(new_distance) {
 
+    // An average 20 mile day with a car
+    // Average 5 miles per litre
+    // Average litre price = 1.10 pounds
+    // Average mile not driven saves 0.22 pence
+
     let existing_dollar = parseInt($('#dollar-text').text());
-    $('#dollar-text').text(parseInt(new_distance) + existing_dollar);
+    $('#dollar-text').text(parseInt(new_distance)*0.22 + existing_dollar);
 
 }
 
