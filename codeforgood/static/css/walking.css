@@ -14,3 +14,63 @@
     width: 450px;
     margin-top: 15px;
 }
+
+.triangle-obtuse {
+    position:relative;
+    padding:15px;
+    margin:1em 0 3em;
+    color:#fff;
+    background:#c81e2b;
+    /* css3 */
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    width: 175px;
+    display: inline-block;
+    margin-left: 60px;
+    margin-top: 60px;
+}
+
+/* creates the wider right-angled triangle */
+.triangle-obtuse:before {
+  content:"";
+  position:absolute;
+  bottom:-20px; /* value = - border-top-width - border-bottom-width */
+  left:60px; /* controls horizontal position */
+  border:0;
+  border-right-width:30px; /* vary this value to change the angle of the vertex */
+  border-bottom-width:20px; /* vary this value to change the height of the triangle. must be equal to the corresponding value in :after */
+  border-style:solid;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+#yellow-bubble:before {
+    border-color:transparent #ffcf29;
+}
+#green-bubble:before {
+    border-color:transparent #52b052;
+}
+#blue-bubble:before {
+    border-color:transparent #0a9ec8;
+}
+
+#yellow-bubble {
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#ffcf29), to(#ffcf29));
+    background:-moz-linear-gradient(#ffcf29, #ffcf29);
+    background:-o-linear-gradient(#ffcf29, #ffcf29);
+    background:linear-gradient(#ffcf29, #ffcf29);
+}
+#green-bubble {
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#52b052), to(#52b052));
+    background:-moz-linear-gradient(#52b052, #52b052);
+    background:-o-linear-gradient(#52b052, #52b052);
+    background:linear-gradient(#52b052, #52b052);
+}
+#blue-bubble {
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#0a9ec8), to(#0a9ec8));
+    background:-moz-linear-gradient(#0a9ec8, #0a9ec8);
+    background:-o-linear-gradient(#0a9ec8, #0a9ec8);
+    background:linear-gradient(#0a9ec8, #0a9ec8);
+}

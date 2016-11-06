@@ -7,6 +7,25 @@
 {% endblock %}
 
 {% block content %}
+    <div id="success-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title">Successfully completed the challenge!!!</h2>
+                </div>
+                <div class="modal-body">
+                    <p>Overall you saved <span id="modal-co2-report"></span> kg of CO2, <span id="modal-cash-report"></span> pounds, and ran <span id="modal-miles-report"></span> miles</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="/">
+                    <button type="button" class="btn btn-warning" data>Continue</button>
+                        </a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     {% if user_project.project %}
         <div id="performance-container">
             {% include 'brake_classroom/performance_container.html' %}

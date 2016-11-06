@@ -71,10 +71,10 @@ def update_performance(request):
 
         the_project = Project.objects.get(id=project_id)
         the_project.goal_achieved += new_distance
-        the_project.money_saved += new_money
-        the_project.co2_saved += new_co2
+        the_project.money_saved = new_money
+        the_project.co2_saved = new_co2
         print("new money saved is %f" % the_project.money_saved)
         print("new co2 saved is %f" % the_project.co2_saved)
         the_project.save()
 
-        return JsonResponse({'response': 'success'})
+        return JsonResponse({'full_distance_covered': the_project.goal_achieved})
