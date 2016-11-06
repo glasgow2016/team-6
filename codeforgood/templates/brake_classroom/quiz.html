@@ -1,6 +1,17 @@
-{% for question in questions %}
+<div class="row" xmlns="http://www.w3.org/1999/html">
+    {% for question in questions %}
 
-    {{ question.title }}
+        {{ question.question_title }}
+        <div class="form-group" id="answers">
+            <input class="answer" type="radio" value="1">{{ question.right_answer }}
+            <input class="answer" type="radio" value="0"> {{ question.wrong_answer1 }}
+            <input class="answer" type="radio" value="0">{{ question.wrong_answer2 }}
+            <input class="answer" type="radio" value="0">{{ question.wrong_answer3 }}
+        </div>
 
 
-{% endfor %}
+    {% endfor %}
+</div>
+
+
+

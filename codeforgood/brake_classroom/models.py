@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -10,6 +11,7 @@ class Level(models.Model):
 
 
 class Question(models.Model):
+    number = models.IntegerField()
     question_title = models.TextField(max_length=500)
     right_answer = models.CharField(max_length=128)
     wrong_answer1 = models.CharField(max_length=128)
@@ -23,6 +25,13 @@ class Question(models.Model):
 
 
 class Project(models.Model):
-    co2_saved = models.FloatField()
+    co2_saved = models.FloatField(null=True)
     milage = models.FloatField()
-    money_saved = models.FloatField()
+    money_saved = models.FloatField(null=True)
+    created = models.DateTimeField(null=True)
+    complete_in = models.IntegerField(default=30)  # days
+
+
+class UserProject(models.Model):
+    user = models.OneToOneField(User)
+    project = models.OneToOneField(Project, null=True)
