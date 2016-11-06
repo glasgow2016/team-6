@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block css_per_page %}
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/daterangepicker.css' %}">
+{% endblock %}
+
 {% block content %}
 
     {% if user_project.project %}
@@ -61,6 +66,6 @@
 {% block static_per_page %}
     <script src="{% static 'js/projects.js' %}"></script>
     <script src="{% static 'js/progress.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/projects.css' %}"/>
-
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/daterangepicker.js' %}"></script>
 {% endblock %}
