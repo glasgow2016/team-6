@@ -17,24 +17,53 @@
             </form>
             <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
             <div id="progress-circle-container"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-6 text-center">
-            <h3>Kilograms of CO2 we have saved:</h3>
-            <div class="cloud-container">
-                <img src="{% static 'images/test.svg'%}" style="width: 200px; height: 200px; border: none;">
-            </div>
-            <p class="co2-text">this is a test</p>
-        </div>
-        <div class="col-xs-6 text-center">
-            <h3>We have saved 50 pounds of gas money!</h3>
-            <div class="dollar-container">
-                <img src="{% static 'images/noun_16715_cc.svg'%}" style="width: 200px; height: 200px; border: none;">
-            </div>
-        </div>
-    </div>
 
+    {% if user_project.project %}
+        <div class="row heading-row text-center">
+            <h1>Class Project</h1>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h3>Our goal: 1000 miles</h3>
+                <form class="form-inline" id="add-new-distance" onsubmit="return addNewDistance();">
+                    <div class="form-group">
+                        <label for="new-distance-input">Add</label>
+                        <input id="new-distance-input" class="form-control"/>
+                        <label>miles to the goal.</label>
+                    </div>
+                </form>
+                <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet"
+                      type="text/css">
+                <div id="progress-circle-container"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                <h3>Kilograms of CO2 we have saved:</h3>
+                <div class="cloud-container">
+                    <img src="{% static 'images/test.svg' %}" style="width: 200px; height: 200px; border: none;">
+                </div>
+                <p class="co2-text">this is a test</p>
+            </div>
+            <div class="col-xs-6 text-center">
+                <h3>We have saved 50 pounds of gas money!</h3>
+                <div class="dollar-container">
+                    <img src="{% static 'images/noun_16715_cc.svg' %}"
+                         style="width: 200px; height: 200px; border: none;">
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row heading-row text-center">
+            <h1>You have no projects, create a new one.</h1>
+        </div>
+        <form method="POST" action="{% url 'project' %}">
+            {% csrf_token %}
+            {{ project_form }}
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <button type="submit">Submit</button>
+        </form>
+    {% endif %}
 {% endblock %}
 
 {% block static_per_page %}

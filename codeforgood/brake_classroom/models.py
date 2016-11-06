@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Question(models.Model):
@@ -15,6 +16,13 @@ class Question(models.Model):
 
 
 class Project(models.Model):
-    co2_saved = models.FloatField()
+    co2_saved = models.FloatField(null=True)
     milage = models.FloatField()
-    money_saved = models.FloatField()
+    money_saved = models.FloatField(null=True)
+    created = models.DateTimeField(null=True)
+    complete_in = models.IntegerField(default=30)  # days
+
+
+class UserProject(models.Model):
+    user = models.OneToOneField(User)
+    project = models.OneToOneField(Project, null=True)
