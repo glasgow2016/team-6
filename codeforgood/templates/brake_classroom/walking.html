@@ -6,76 +6,68 @@
     Walking
 {% endblock %}
 
+{% block css_per_page %}
+    <link rel="stylesheet" href="{% static 'css/walking.css' %}"/>
+{% endblock %}
+
 {% block content %}
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home">Section 1</a></li>
-        <li><a data-toggle="tab" href="#menu1">Section 2</a></li>
-        <li><a data-toggle="tab" href="#menu2">Section 3</a></li>
-        <li><a data-toggle="tab" href="#menu2">Section 3</a></li>
-        <li><a data-toggle="tab" href="#menu2">Section 3</a></li>
-        <li><a data-toggle="tab" href="#menu2">Section 3</a></li>
-        <li><a data-toggle="tab" href="#menu2">Section 3</a></li>
-        <li><a data-toggle="tab" href="#menu2">Section 3</a></li>
+        <li class="active"><a data-toggle="tab" href="#home">Walk Together</a></li>
+        <li><a data-toggle="tab" href="#menu1">Traffic</a></li>
+        <li><a data-toggle="tab" href="#menu2">Cross</a></li>
+        <li><a data-toggle="tab" href="#menu3">Question 1</a></li>
+        <li><a data-toggle="tab" href="#menu4">Question 2</a></li>
+        <li><a data-toggle="tab" href="#menu5">Question 3</a></li>
+        <li><a data-toggle="tab" href="#menu6">Did you know?</a></li>
     </ul>
 
     <div class="tab-content">
-        <div class="container">
-        <div id="home" class="tab-pane fade in active">
-            <h3>HOME</h3>
-            <p>Some content.</p>
-            <div id="player"></div>
-            <script>
-                // 2. This code loads the IFrame Player API code asynchronously.
-                var tag = document.createElement('script');
+        <div id="home" role="tabpanel" class="tab-pane fade in active">
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4>Walking is fun, but you should to be safe while doing it.</h4>
+                    <p>Younger children should always walk with an adult.
+                        Tell your parents that walking is great exercise and a nice way to spend time together.
+                        When you can walk with a friend. :)
+                    </p>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <img id="walktogether-photo" src="{% static 'images/walktogether.jpg' %}"/>
+                </div>
+            </div>
 
-                tag.src = "https://www.youtube.com/iframe_api";
-                var firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-                // 3. This function creates an <iframe> (and YouTube player)
-                //    after the API code downloads.
-                var player;
-                function onYouTubeIframeAPIReady() {
-                    player = new YT.Player('player', {
-                        height: '500',
-                        width: '800',
-                        videoId: 'M7lc1UVf-VE',
-                        events: {
-                            'onReady': onPlayerReady,
-                            'onStateChange': onPlayerStateChange
-                        }
-                    });
-                }
-
-                // 4. The API will call this function when the video player is ready.
-                function onPlayerReady(event) {
-                    event.target.playVideo();
-                }
-
-                // 5. The API calls this function when the player's state changes.
-                //    The function indicates that when playing a video (state=1),
-                //    the player should play for six seconds and then stop.
-                var done = false;
-                function onPlayerStateChange(event) {
-                    if (event.data == YT.PlayerState.PLAYING && !done) {
-                        setTimeout(stopVideo, 6000);
-                        done = true;
-                    }
-                }
-                function stopVideo() {
-                    player.stopVideo();
-                }
-            </script>
-        </div>
         </div>
         <div id="menu1" class="tab-pane fade">
-            <h3>Menu 1</h3>
-            <p>Some content in menu 1.</p>
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4>Walking is fun, but you should pay attention!</h4>
+                    <p>Always look out for the traffic signs, signals and adult school crossing guards.
+                        Watch out for cars and trucks at every driveway and intersection during your walk.
+                    </p>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <img id="traffic-photo" src="{% static 'images/traffic.jpg' %}"/>
+                </div>
+            </div>
         </div>
         <div id="menu2" class="tab-pane fade">
-            <h3>Menu 2</h3>
-            <p>Some content in menu 2.</p>
-            <a href="/quiz/?level=walking&question=1">Go to quiz</a>
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4>Walking is fun, but crossing can be dangerous!</h4>
+                    <p>How to cross a road?</p>
+                    <ol>
+                        <li>First find the safest place to cross.</li>
+                        <li>Stop at the curb or edge of the street.</li>
+                        <li>Look left, right, left and behind you and in front of you for traffic and listen.</li>
+                        <li>Wait until no traffic is coming and begin crossing.</li>
+                        <li>Keep looking for traffic until you have finished crossing.</li>
+                        <li>Walk, don’t run across the street.</li>
+                    </ol>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <img id="lollypop-photo" src="{% static 'images/lollypop.jpg' %}"/>
+                </div>
+            </div>
         </div>
     </div>
 
