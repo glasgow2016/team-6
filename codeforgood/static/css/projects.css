@@ -49,3 +49,15 @@
 #goal-achieved {
     display: none;
 }
+
+#reportrange-form-group {
+    width: 250px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#start-project-btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}

@@ -38,10 +38,6 @@
             <div class="col-xs-12 text-center">
                 <form method="POST" action="{% url 'project' %}">
                     {% csrf_token %}
-                    <input type="text" placeholder="Mileage" name="mileage">
-                    <input type="hidden" id="final-date" name="final_date" value="">
-                    <input type="hidden" name="user_id" value="{{ user.id }}">
-                    <button type="submit">Submit</button>
                     <div id="reportrange-form-group" class="form-group">
                         <label for="reportrange">Choose a timeframe</label>
                         <div id="reportrange" class="reportrange form-control">
@@ -49,6 +45,10 @@
                             <span id="daterange-picker-holder"></span> <b class="caret"></b>
                         </div>
                     </div>
+                    <input type="text" placeholder="Mileage" name="mileage">
+                    <input type="hidden" id="final-date" name="final_date" value="">
+                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                    <button id="start-project-btn" class="btn btn-primary" type="submit">Start Project!</button>
                 </form>
             </div>
         </div>
