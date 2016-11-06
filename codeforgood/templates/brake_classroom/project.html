@@ -2,21 +2,6 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="row heading-row text-center">
-        <h1>Class Project</h1>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 text-center">
-            <h3>Our goal: 1000 miles</h3>
-            <form class="form-inline" id="add-new-distance" onsubmit="return addNewDistance();">
-                <div class="form-group">
-                    <label for="new-distance-input">Add</label>
-                    <input id="new-distance-input" class="form-control"/>
-                    <label>miles to the goal.</label>
-                </div>
-            </form>
-            <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
-            <div id="progress-circle-container"></div>
 
     {% if user_project.project %}
         <div class="row heading-row text-center">

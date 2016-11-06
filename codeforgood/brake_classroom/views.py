@@ -16,6 +16,7 @@ def walking(request):
     # def quiz(request):
     #     questions = Question.objects.all()
 
+
 def quiz(request):
     print("Request")
     print(request.GET)
@@ -35,7 +36,6 @@ def cycling(request):
 
 
 def project(request):
-
     if request.method == 'GET':
         context = {}
         user_project = UserProject.objects.get(user=request.user)
