@@ -14,7 +14,6 @@ def index(request):
 def walking(request):
     return render(request, 'brake_classroom/walking.html')
 
-
 # def quiz(request):
 #     level = request.GET['level']
 #     question_number = int(request.GET['question'])
