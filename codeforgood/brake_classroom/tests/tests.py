@@ -8,7 +8,7 @@ class QuestionModelTest(TestCase):
         """
         Create fixture for the Question model
         """
-        question1 = Question(
+        self.question1 = Question(
             level="walking",
             number="1",
             question_title="Is it a good idea to walk?",
@@ -17,9 +17,9 @@ class QuestionModelTest(TestCase):
             wrong_answer2="No",
             wrong_answer3="No"
         )
-        question1.save()
+        self.question1.save()
 
-        question2 = Question(
+        self.question2 = Question(
             level="walking",
             number="2",
             question_title="Is it a good idea to run?",
@@ -28,5 +28,7 @@ class QuestionModelTest(TestCase):
             wrong_answer2="No",
             wrong_answer3="No"
         )
-        question2.save()
-        
+        self.question2.save()
+
+    def test_not_equal(self):
+        self.assertNotEqual(self.question2, self.question2)
