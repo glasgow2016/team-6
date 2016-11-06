@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import logout
 from brake_classroom.models import Question, UserProject, Project
 from datetime import datetime, timedelta
+from django.http import JsonResponse
 
 
 def index(request):
@@ -62,3 +63,21 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('/')
+
+
+def update_performance(request):
+    if request.is_ajax():
+        new_distance = float(request.GET['new_distance'])
+        new_money = float(request.GET['newMoney'])
+        new_co2 = float(request.GET['newCO2'])
+        project_id = int(request.GET['project_id'])
+
+        the_project = Project.objects.get(id=project_id)
+        the_project.goal_achieved += new_distance
+        the_project.money_saved += new_money
+        the_project.co2_saved += new_co2
+        print("new money saved is %f" % the_project.money_saved)
+        print("new co2 saved is %f" % the_project.co2_saved)
+        the_project.save()
+
+        return JsonResponse({'response': 'success'})

@@ -18,6 +18,7 @@ class Question(models.Model):
 class Project(models.Model):
     co2_saved = models.FloatField( default=0)
     milage = models.FloatField()
+    goal_achieved = models.FloatField(default=0)
     money_saved = models.FloatField(default=0)
     created = models.DateTimeField(null=True)
     complete_in = models.IntegerField(default=30)  # days
