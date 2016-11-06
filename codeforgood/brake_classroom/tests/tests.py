@@ -31,4 +31,4 @@ class QuestionModelTest(TestCase):
         self.question2.save()
 
     def test_not_equal(self):
-        self.assertNotEqual(self.question2, self.question2)
+        self.assertNotEqual(self.question2, self.question1)
