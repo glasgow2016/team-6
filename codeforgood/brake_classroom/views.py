@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from django.contrib.auth import logout
-from brake_classroom.models import Question, UserProject, Project
+from brake_classroom.models import UserProject, Project
 from datetime import datetime, timedelta
 from django.http import JsonResponse
 
@@ -12,21 +12,19 @@ def index(request):
 
 
 def walking(request):
-    question1 = Question.objects.get(number=1)
-    print(question1)
-    return render(request, 'brake_classroom/walking.html', {'question1': question1})
+    return render(request, 'brake_classroom/walking.html')
 
 
-def quiz(request):
-    level = request.GET['level']
-    question_number = int(request.GET['question'])
-    question = Question.objects.get(number=question_number, level=level)
-    count = Question.objects.filter(level=level).count()
-
-    previous_question = None if question_number == 1 else question_number - 1
-    next_question = None if question_number == count else question_number + 1
-    return render(request, 'brake_classroom/quiz.html',
-                  {'question': question, 'previous': previous_question, 'next': next_question})
+# def quiz(request):
+#     level = request.GET['level']
+#     question_number = int(request.GET['question'])
+#     question = Question.objects.get(number=question_number, level=level)
+#     count = Question.objects.filter(level=level).count()
+#
+#     previous_question = None if question_number == 1 else question_number - 1
+#     next_question = None if question_number == count else question_number + 1
+#     return render(request, 'brake_classroom/quiz.html',
+#                   {'question': question, 'previous': previous_question, 'next': next_question})
 
 
 def cycling(request):
