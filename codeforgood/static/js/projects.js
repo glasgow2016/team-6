@@ -58,35 +58,13 @@ $(function () {
     }
 
     $('#reportrange').daterangepicker({
-        singleDatePicker: true,
+        singleDatePicker: true
     }, function (date) {
         cb(date);
 
     });
     cb(today);
 });
-
-function getDateRangePickerEndDate() {
-    /* If there is no range displayed inside the span, this means we want to get
-     * all the orders, so simply return undefined in that case
-     */
-    var span_content = $('#daterange-picker-holder').html();
-    if (span_content === '') {
-        return undefined;
-    }
-    return $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DDT23:59:59');
-}
-
-function getDateRangePickerStartDate() {
-    /* If there is no range displayed inside the span, this means we want to get
-     * all the orders, so simply return undefined in that case
-     */
-    var span_content = $('#daterange-picker-holder').html();
-    if (span_content === '') {
-        return undefined;
-    }
-    return $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DDT00:00:00');
-}
 
 
 function addNewDistance() {
