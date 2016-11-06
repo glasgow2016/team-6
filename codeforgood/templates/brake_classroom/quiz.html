@@ -8,25 +8,15 @@
             <input class="answer" type="radio" value="0">{{ question.wrong_answer2 }}
             <input class="answer" type="radio" value="0">{{ question.wrong_answer3 }}
         </div>
-    <a class="w3-left w3-btn" href="">❮ Previous</a>
-    <a class="w3-right w3-btn" href="">Next ❯</a>
-
+    {%  if previous %}
+    <a class="w3-left w3-btn" href="http://127.0.0.1:8000/quiz/?level={{ question.level }}&question={{ previous }}">❮ Previous</a>
+    {%  endif %}
+{% if next %}
+    <a class="w3-right w3-btn" href=http://127.0.0.1:8000/quiz/?level={{ question.level }}&question={{ next }}>Next ❯</a>
+{% endif %}
 </div>
 
-<div class="row" xmlns="http://www.w3.org/1999/html">
-    {% for question in questions %}
 
-        {{ question.question_title }}
-        <div class="form-group" id="answers">
-            <input class="answer" type="radio" value="1">{{ question.right_answer }}
-            <input class="answer" type="radio" value="0"> {{ question.wrong_answer1 }}
-            <input class="answer" type="radio" value="0">{{ question.wrong_answer2 }}
-            <input class="answer" type="radio" value="0">{{ question.wrong_answer3 }}
-        </div>
-
-
-    {% endfor %}
-</div>
 
 
 
