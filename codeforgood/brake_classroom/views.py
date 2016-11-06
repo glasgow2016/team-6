@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from django.contrib.auth import logout
 from brake_classroom.models import Question, UserProject, Project
-from brake_classroom.forms import ProjectForm
 from datetime import datetime, timedelta
 
 
