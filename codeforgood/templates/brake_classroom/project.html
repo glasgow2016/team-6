@@ -34,20 +34,24 @@
         <div class="row heading-row text-center">
             <h1>You have no projects, create a new one.</h1>
         </div>
-        <form method="POST" action="{% url 'project' %}">
-            {% csrf_token %}
-            <input type="text" placeholder="Mileage" name="mileage">
-            <input type="hidden" id="final-date" name="final_date" value="">
-            <input type="hidden" name="user_id" value="{{ user.id }}">
-            <button type="submit">Submit</button>
-            <div class="form-group">
-                <label for="reportrange">Choose a timeframe</label>
-                <div id="reportrange" class="reportrange form-control">
-                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                    <span id="daterange-picker-holder"></span> <b class="caret"></b>
-                </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <form method="POST" action="{% url 'project' %}">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Mileage" name="mileage">
+                    <input type="hidden" id="final-date" name="final_date" value="">
+                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                    <button type="submit">Submit</button>
+                    <div id="reportrange-form-group" class="form-group">
+                        <label for="reportrange">Choose a timeframe</label>
+                        <div id="reportrange" class="reportrange form-control">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                            <span id="daterange-picker-holder"></span> <b class="caret"></b>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     {% endif %}
 {% endblock %}
 
