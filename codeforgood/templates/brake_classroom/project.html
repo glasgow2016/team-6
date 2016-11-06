@@ -49,7 +49,8 @@
         </div>
         <form method="POST" action="{% url 'project' %}">
             {% csrf_token %}
-            {{ project_form }}
+            <input type="text" placeholder="Mileage" name="mileage">
+            <input type="hidden" id="final-date" value="">
             <input type="hidden" name="user_id" value="{{ user.id }}">
             <button type="submit">Submit</button>
             <div class="form-group">
