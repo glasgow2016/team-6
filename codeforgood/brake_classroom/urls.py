@@ -7,6 +7,8 @@ urlpatterns = [
         url('^cycling/', views.cycling, name='cycling'),
         #url('^car-safety/', views.car_safety, name='car_safety'),
         url('^project/', views.project, name='project'),
-        url('^quiz/', views.quiz, name='quiz'),
+        # url('^quiz/', views.quiz, name='quiz'),
+        url('^login/$', views.login_user, name="login"),
+        url('^logout/$', views.logout_user, name='logout')
         ]
 
