@@ -24,51 +24,75 @@
 
 
     <div class="tab-content">
-        <div id="home" role="tabpanel" class="tab-pane fade in active">
-            <div class="row">
-                <div class="col-xs-6">
-                    <h4>Walking is fun, but you should to be safe while doing it.</h4>
-                    <p>Younger children should always walk with an adult.
-                        Tell your parents that walking is great exercise and a nice way to spend time together.
-                        When you can walk with a friend. :)
-                    </p>
-                </div>
-                <div class="col-xs-6 text-center">
-                    <img id="walktogether-photo" src="{% static 'images/walktogether.jpg' %}"/>
-                </div>
+    <div id="home" role="tabpanel" class="tab-pane fade in active">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>Walking is fun, but you should to be safe while doing it.</h4>
+                <p>Younger children should always walk with an adult.
+                    Tell your parents that walking is great exercise and a nice way to spend time together.
+                    When you can walk with a friend. :)
+                </p>
+            </div>
+            <div class="col-xs-6 text-center">
+                <img id="walktogether-photo" src="{% static 'images/walktogether.jpg' %}"/>
             </div>
         </div>
+    </div>
 
-        <div id="menu1" class="tab-pane fade">
-            <div class="row">
-                <div class="col-xs-6">
-                    <h4>Walking is fun, but you should pay attention!</h4>
-                    <p>Always look out for the traffic signs, signals and adult school crossing guards.
-                        Watch out for cars and trucks at every driveway and intersection during your walk.
-                    </p>
-                </div>
-                <div class="col-xs-6 text-center">
-                    <img id="traffic-photo" src="{% static 'images/traffic.jpg' %}"/>
-                </div>
+    <div id="menu1" class="tab-pane fade">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>Walking is fun, but you should pay attention!</h4>
+                <p>Always look out for the traffic signs, signals and adult school crossing guards.
+                    Watch out for cars and trucks at every driveway and intersection during your walk.
+                </p>
+            </div>
+            <div class="col-xs-6 text-center">
+                <img id="traffic-photo" src="{% static 'images/traffic.jpg' %}"/>
             </div>
         </div>
-        <div id="menu2" class="tab-pane fade">
-            <div class="row">
-                <div class="col-xs-6">
-                    <h4>Walking is fun, but crossing can be dangerous!</h4>
-                    <p>How to cross a road?</p>
-                    <ol>
-                        <li>First find the safest place to cross.</li>
-                        <li>Stop at the curb or edge of the street.</li>
-                        <li>Look left, right, left and behind you and in front of you for traffic and listen.</li>
-                        <li>Wait until no traffic is coming and begin crossing.</li>
-                        <li>Keep looking for traffic until you have finished crossing.</li>
-                        <li>Walk, don’t run across the street.</li>
-                    </ol>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>Walking is fun, but crossing can be dangerous!</h4>
+                <p>How to cross a road?</p>
+                <ol>
+                    <li>First find the safest place to cross.</li>
+                    <li>Stop at the curb or edge of the street.</li>
+                    <li>Look left, right, left and behind you and in front of you for traffic and listen.</li>
+                    <li>Wait until no traffic is coming and begin crossing.</li>
+                    <li>Keep looking for traffic until you have finished crossing.</li>
+                    <li>Walk, don’t run across the street.</li>
+                </ol>
+            </div>
+            <div class="col-xs-6 text-center">
+                <img id="lollypop-photo" src="{% static 'images/lollypop.jpg' %}"/>
+            </div>
+        </div>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>{{ question1.question_title }}</h4>
+                <p>
+                <div class="first-two-answers">
+                <div class="radio-inline">
+                    <label><input type="radio" name="optradio">{{ question1.right_answer }}</label>
                 </div>
-                <div class="col-xs-6 text-center">
-                    <img id="lollypop-photo" src="{% static 'images/lollypop.jpg' %}"/>
+                <div class="radio-inline">
+                    <label><input type="radio" name="optradio">{{ question1.wrong_answer1 }}</label>
                 </div>
+                </div>
+                <div class="second-two-answers">
+                <div class="radio-inline">
+                    <label><input type="radio" name="optradio" >{{ question1.wrong_answer2 }}</label>
+                </div>
+                <div class="radio-inline">
+                    <label><input type="radio" name="optradio">{{ question1.wrong_answer3 }}</label>
+                </div>
+                    </div>
+
             </div>
         </div>
     </div>
