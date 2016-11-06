@@ -73,13 +73,11 @@ function addNewDistance() {
     var current_distance = parseInt($("#goal-achieved").attr('value'));
     $('#goal-achieved').attr('value', new_distance + current_distance);
     var full_distance = new_distance + current_distance;
-    console.log("New distance is " + new_distance + " current distance is " + current_distance);
-    console.log(full_distance);
 
     if (!isInt(new_distance)) {
         return false;
     }
-    let new_percentage = new_distance / target_distance;
+    let new_percentage = Number((new_distance / target_distance).toFixed(1));
     let existing_percentage = 0;
     if (!bar['text']['firstChild']) {
         existing_percentage = 0;
@@ -132,11 +130,11 @@ function updateCO2(new_distance) {
     // An average day without a car saves 26lbs of CO2 ~ 12kg
     // Assuming an average day is with a car is 20 miles, a mile not
     // driven would amount to 0.6kg.
-
+    console.log("New distance " + new_distance);
     let existing_co2 = parseInt($('#co2-text').text());
     let new_co2 = parseInt(new_distance) * 0.6 + existing_co2;
     $('#co2-text').text(new_co2);
-    return new_co2;
+    return Number(new_co2).toFixed(2);
 
 }
 
