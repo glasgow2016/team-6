@@ -77,7 +77,7 @@ function addNewDistance() {
     if (!isInt(new_distance)) {
         return false;
     }
-    let new_percentage = Number((new_distance / target_distance).toFixed(1));
+    let new_percentage = new_distance / target_distance;
     let existing_percentage = 0;
     if (!bar['text']['firstChild']) {
         existing_percentage = 0;
@@ -148,7 +148,7 @@ function updateMoney(new_distance) {
     let existing_dollar = parseInt($('#dollar-text').text());
     let new_dollar = parseInt(new_distance) * 0.22 + existing_dollar
     $('#dollar-text').text(new_dollar);
-    return new_dollar;
+    return Number(new_dollar).toFixed(2);
 }
 
 // Stackoverflow rules!
