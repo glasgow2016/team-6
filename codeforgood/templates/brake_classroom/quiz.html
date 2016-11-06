@@ -1,5 +1,6 @@
+{% extends 'base.html' %}
 
-
+{% block content %}
 <div class="row" xmlns="http://www.w3.org/1999/html">
         {{ question.question_title }}
         <div class="form-group" id="answers">
@@ -15,6 +16,7 @@
     <a class="w3-right w3-btn" href=http://127.0.0.1:8000/quiz/?level={{ question.level }}&question={{ next }}>Next ❯</a>
 {% endif %}
 </div>
+{% endblock %}
 
 
 
