@@ -29,6 +29,9 @@ def cycling(request):
 
 
 def project(request):
+
+
+
     return render(request, 'brake_classroom/project.html')
 
 

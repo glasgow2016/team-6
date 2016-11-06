@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="row heading-row text-center">
-        <h1>Class Project</h1>
+        <h1 id="class-project-heading">Class Project</h1>
     </div>
     <div class="row">
         <div class="col-xs-12 text-center">
@@ -25,12 +25,12 @@
             <div class="cloud-container">
                 <img src="{% static 'images/test.svg'%}" style="width: 200px; height: 200px; border: none;">
             </div>
-            <p class="co2-text">this is a test</p>
+            <p id="co2-text">50</p>
         </div>
         <div class="col-xs-6 text-center">
-            <h3>We have saved 50 pounds of gas money!</h3>
+            <h3>We have saved <span id="dollar-text">50</span> pounds of gas money!</h3>
             <div class="dollar-container">
-                <img src="{% static 'images/noun_16715_cc.svg'%}" style="width: 200px; height: 200px; border: none;">
+                <img src="{% static 'images/noun_16715_cc.svg'%}" style="width: 200px; height: 150px; border: none;">
             </div>
         </div>
     </div>
