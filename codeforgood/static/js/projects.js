@@ -1,57 +1,75 @@
 var bar;
 
-$(function(){
+$(function () {
+    if ($('#progress-circle-container').length != 0) {
 
-    console.log("here");
+        $('.water').animate({
+            height: '25%'
+        }, 1000);
 
-    $('.water').animate({
-        height: '25%'
-    }, 1000);
+        let target_distance = parseInt($("#goal").text());
 
+        bar = new ProgressBar.Circle("#progress-circle-container", {
+            color: '#aaa',
+            // This has to be the same size as the maximum width to
+            // prevent clipping
+            strokeWidth: 4,
+            trailWidth: 5,
+            easing: 'easeInOut',
+            duration: 1400,
+            text: {
+                autoStyleContainer: false
+            },
+            from: {color: '#aaa', width: 1},
+            to: {color: '#333', width: 4},
+            // Set default step function for all animate calls
+            step: function (state, circle) {
+                circle.path.setAttribute('stroke', state.color);
+                circle.path.setAttribute('stroke-width', state.width);
 
-    $('add-new-distance').on('submit', function(event) {
-        console.log("Stopped form submission");
-        event.preventDefault();
-        console.log("Stopped form submission");
-    });
-
-    let target_distance = parseInt($("#goal").text());
-
-    bar = new ProgressBar.Circle("#progress-circle-container", {
-        color: '#aaa',
-        // This has to be the same size as the maximum width to
-        // prevent clipping
-        strokeWidth: 4,
-        trailWidth: 5,
-        easing: 'easeInOut',
-        duration: 1400,
-        text: {
-        autoStyleContainer: false
-        },
-        from: { color: '#aaa', width: 1 },
-        to: { color: '#333', width: 4 },
-        // Set default step function for all animate calls
-        step: function(state, circle) {
-            circle.path.setAttribute('stroke', state.color);
-            circle.path.setAttribute('stroke-width', state.width);
-            var value = Math.round(circle.value() * target_distance);
-            if (value === 0) {
-              circle.setText('');
-            } else {
-              circle.setText(value);
+                var value = Math.round(circle.value() * target_distance);
+                if (value === 0) {
+                    circle.setText('');
+                } else {
+                    circle.setText(value);
+                }
             }
+        });
+        bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+        bar.text.style.fontSize = '2rem';
 
-        }
-    });
-    bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-    bar.text.style.fontSize = '2rem';
-
-    bar.animate(0.05);  // Number from 0.0 to 1.0
+        //let goal_achieved = parseInt($("#goal-achieved").text());
+        let goal_achieved = 50;
+        let percentage_achieved = goal_achieved/target_distance;
+        bar.animate(percentage_achieved);  // Number from 0.0 to 1.0
+    }
 });
+
+/* functions about interacting with the daterange picker */
+$(function () {
+    var today = moment();
 
 // Handles the form submission and
 // takes care that the necessary parts of the page are updated
+
+    function cb(time) {
+        $('#reportrange span').html(time.format('MMMM D, YYYY'));
+        $('#final-date')
+            .attr('value', time.format('YYYY-MM-DD'));
+    }
+
+    $('#reportrange').daterangepicker({
+        singleDatePicker: true
+    }, function (date) {
+        cb(date);
+
+    });
+    cb(today);
+});
+
 function addNewDistance() {
+
+    console.log("we have submitted");
 
     let target_distance = parseInt($("#goal").text());
     let new_distance = $("#new-distance-input").val();

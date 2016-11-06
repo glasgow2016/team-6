@@ -1,45 +1,77 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block content %}
-    <div class="row heading-row text-center">
-        <h1 id="class-project-heading">Class Project</h1>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 text-center">
-            <h3>Our goal: <span id="goal">1000</span> miles</h3>
-            <form class="form-inline" id="add-new-distance" onsubmit="return addNewDistance();">
-                <div class="form-group">
-                    <label for="new-distance-input">Add</label>
-                    <input id="new-distance-input" class="form-control"/>
-                    <label>miles to the goal.</label>
-                </div>
-            </form>
-            <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
-            <div id="progress-circle-container"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-6 text-center">
-            <h3>Kilograms of CO2 we have saved:</h3>
-            <div class="cloud-container">
-                <img src="{% static 'images/test.svg'%}" style="width: 200px; height: 200px; border: none;">
-            </div>
-            <p id="co2-text">24.3</p>
-        </div>
-        <div class="col-xs-6 text-center">
-            <h3>We have saved <span id="dollar-text">12.5</span> pounds of gas money!</h3>
-            <div class="dollar-container">
-                <img src="{% static 'images/noun_16715_cc.svg'%}" style="width: 200px; height: 150px; border: none;">
-            </div>
-        </div>
-    </div>
+{% block css_per_page %}
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/daterangepicker.css' %}">
+{% endblock %}
 
+{% block content %}
+    {% if user_project.project %}
+        <div class="row heading-row text-center">
+            <h1>Class Project</h1>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h3>Our goal: <span id="goal">{{ user_project.project.milage }}</span> miles</h3>
+                <form class="form-inline" id="add-new-distance" onsubmit="return addNewDistance();">
+                    <div class="form-group">
+                        <label for="new-distance-input">Add</label>
+                        <input id="new-distance-input" class="form-control"/>
+                        <label>miles to the goal.</label>
+                    </div>
+                </form>
+                <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet"
+                      type="text/css">
+                <div id="progress-circle-container"></div>
+            </div>
+        </div>
+{#        <div class="col-xs-6 text-center">#}
+{#            <h3>We have saved <span id="dollar-text">{{ user_project.project.money_saved }}</span> pounds of gas money!</h3>#}
+{#            <div class="dollar-container">#}
+{#                <img src="{% static 'images/noun_16715_cc.svg'%}" style="width: 200px; height: 150px; border: none;">#}
+{#        </div>#}
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                <h3>Kilograms of CO2 we have saved:</h3>
+                <div class="cloud-container">
+                    <img src="{% static 'images/test.svg' %}" style="width: 200px; height: 200px; border: none;">
+                </div>
+                <p id="co2-text">{{ user_project.project.co2_saved }}</p>
+                <p id="goal-achieved">{{ user_project.project.milage }}</p>
+            </div>
+            <div class="col-xs-6 text-center">
+                <h3>We have saved <span id="dollar-text">{{ user_project.project.money_saved }}</span> pounds of gas money!</h3>
+                <div class="dollar-container">
+                    <img src="{% static 'images/noun_16715_cc.svg' %}"
+                         style="width: 200px; height: 200px; border: none;">
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row heading-row text-center">
+            <h1>You have no projects, create a new one.</h1>
+        </div>
+        <form method="POST" action="{% url 'project' %}">
+            {% csrf_token %}
+            <input type="text" placeholder="Mileage" name="mileage">
+            <input type="hidden" id="final-date" name="final_date" value="">
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <button type="submit">Submit</button>
+            <div class="form-group">
+                <label for="reportrange">Choose a timeframe</label>
+                <div id="reportrange" class="reportrange form-control">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                    <span id="daterange-picker-holder"></span> <b class="caret"></b>
+                </div>
+            </div>
+        </form>
+    {% endif %}
 {% endblock %}
 
 {% block static_per_page %}
     <script src="{% static 'js/projects.js' %}"></script>
     <script src="{% static 'js/progress.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/projects.css' %}"/>
-
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/daterangepicker.js' %}"></script>
 {% endblock %}

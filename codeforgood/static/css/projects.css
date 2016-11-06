@@ -45,3 +45,7 @@
 #dollar-text {
     font-weight:600;
 }
+
+#goal-achieved {
+    display: none;
+}

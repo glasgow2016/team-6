@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from django.contrib.auth import logout
-from brake_classroom.models import Question
+from brake_classroom.models import Question, UserProject, Project
+from datetime import datetime, timedelta
 
 
 def index(request):
@@ -17,11 +18,15 @@ def walking(request):
 
 
 def quiz(request):
-    questions = Question.objects.order_by('number')
-    if request.is_ajax():
-        pass
-        # answer = request.GET['answer']
-    return render(request, 'brake_classroom/quiz.html', {'questions': questions})
+    level = request.GET['level']
+    question_number = int(request.GET['question'])
+    question = Question.objects.get(number=question_number, level=level)
+    count = Question.objects.filter(level=level).count()
+
+    previous_question = None if question_number == 1 else question_number - 1
+    next_question = None if question_number == count else question_number + 1
+    return render(request, 'brake_classroom/quiz.html',
+                  {'question': question, 'previous': previous_question, 'next': next_question})
 
 
 def cycling(request):
@@ -29,10 +34,21 @@ def cycling(request):
 
 
 def project(request):
-
-
-
-    return render(request, 'brake_classroom/project.html')
+    if request.method == 'GET':
+        context = {}
+        user_project = UserProject.objects.get(user=request.user)
+        context['user_project'] = user_project
+        return render(request, 'brake_classroom/project.html', context)
+    else:
+            mileage = request.POST['mileage']
+            final_date = request.POST['final_date']
+            days_to_complete = (datetime.strptime(final_date, "%Y-%m-%d") - datetime.now() + timedelta(days=1)).days
+            new_project = Project(milage=mileage, complete_in=days_to_complete)
+            new_project.save()
+            user_project = UserProject.objects.get(user_id=request.POST['user_id'])
+            user_project.project = new_project
+            user_project.save()
+            return redirect('/project/')
 
 
 def login_user(request):
