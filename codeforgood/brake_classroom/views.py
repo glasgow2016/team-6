@@ -12,10 +12,9 @@ def index(request):
 
 
 def walking(request):
-    return render(request, 'brake_classroom/walking.html')
-    #
-    # def quiz(request):
-    #     questions = Question.objects.all()
+    question1 = Question.objects.get(number=1)
+    print(question1)
+    return render(request, 'brake_classroom/walking.html', {'question1': question1})
 
 
 def quiz(request):
