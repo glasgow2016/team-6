@@ -8,45 +8,8 @@
 
 {% block content %}
     {% if user_project.project %}
-        <div class="row heading-row text-center">
-            <h1>Class Project</h1>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <h3>Our goal: <span id="goal">{{ user_project.project.milage }}</span> miles</h3>
-                <form class="form-inline" id="add-new-distance" onsubmit="return addNewDistance();">
-                    <div class="form-group">
-                        <label for="new-distance-input">Add</label>
-                        <input id="new-distance-input" class="form-control"/>
-                        <label>miles to the goal.</label>
-                    </div>
-                </form>
-                <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet"
-                      type="text/css">
-                <div id="progress-circle-container"></div>
-            </div>
-        </div>
-{#        <div class="col-xs-6 text-center">#}
-{#            <h3>We have saved <span id="dollar-text">{{ user_project.project.money_saved }}</span> pounds of gas money!</h3>#}
-{#            <div class="dollar-container">#}
-{#                <img src="{% static 'images/noun_16715_cc.svg'%}" style="width: 200px; height: 150px; border: none;">#}
-{#        </div>#}
-        <div class="row">
-            <div class="col-xs-6 text-center">
-                <h3>Kilograms of CO2 we have saved:</h3>
-                <div class="cloud-container">
-                    <img src="{% static 'images/test.svg' %}" style="width: 200px; height: 200px; border: none;">
-                </div>
-                <p id="co2-text">{{ user_project.project.co2_saved }}</p>
-                <p id="goal-achieved">{{ user_project.project.milage }}</p>
-            </div>
-            <div class="col-xs-6 text-center">
-                <h3>We have saved <span id="dollar-text">{{ user_project.project.money_saved }}</span> pounds of gas money!</h3>
-                <div class="dollar-container">
-                    <img src="{% static 'images/noun_16715_cc.svg' %}"
-                         style="width: 200px; height: 200px; border: none;">
-                </div>
-            </div>
+        <div id="performance-container">
+            {% include 'brake_classroom/performance_container.html' %}
         </div>
     {% else %}
         <div class="row heading-row text-center">

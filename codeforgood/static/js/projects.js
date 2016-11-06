@@ -29,7 +29,7 @@ $(function () {
 
                 var value = Math.round(circle.value() * target_distance);
                 if (value === 0) {
-                    circle.setText('');
+                    circle.setText('0');
                 } else {
                     circle.setText(value);
                 }
@@ -39,7 +39,7 @@ $(function () {
         bar.text.style.fontSize = '2rem';
 
         //let goal_achieved = parseInt($("#goal-achieved").text());
-        let goal_achieved = 50;
+        let goal_achieved = parseInt($("#goal-achieved").attr('value'));
         let percentage_achieved = goal_achieved/target_distance;
         bar.animate(percentage_achieved);  // Number from 0.0 to 1.0
     }
@@ -68,24 +68,45 @@ $(function () {
 });
 
 function addNewDistance() {
-
-    console.log("we have submitted");
-
+    console.log("Do we get here");
     let target_distance = parseInt($("#goal").text());
     let new_distance = $("#new-distance-input").val();
 
     if (!isInt(new_distance)) {
         return false;
     }
-
+    
     let new_percentage = new_distance/target_distance;
-    let existring_percentage = bar['text']['firstChild']['data']/target_distance;
+    let existing_percentage = 0;
+    if(!bar['text']['firstChild']) {
+        console.log("Do we get in if");
+        existing_percentage = 0;
+    } else {
+        console.log("Do we get in the else");
+        existing_percentage = bar['text']['firstChild']['data'] / target_distance;
+    }
 
     // updates the progress chart
-    bar.animate(new_percentage + existring_percentage);
+    bar.animate(new_percentage + existing_percentage);
 
-    updateCO2(new_distance);
-    updateMoney(new_distance);
+    var newCO2 = updateCO2(new_distance);
+    var newMoney = updateMoney(new_distance);
+    
+    var project_id = $('#project_id').attr('value');
+    /* update the database */
+    $.ajax({
+        type: "GET",
+        url: '/update_performance/',
+        data: {
+            'new_distance': new_distance,
+            'project_id': project_id,
+            'newCO2': newCO2,
+            'newMoney': newMoney
+        },
+        success: function(data) {
+            console.log("Successfully updated the database");
+        }
+    });
 
     return false;
 }
@@ -97,7 +118,9 @@ function updateCO2(new_distance) {
     // driven would amount to 0.6kg.
 
     let existing_co2 = parseInt($('#co2-text').text());
-    $('#co2-text').text(parseInt(new_distance)*0.6 + existing_co2);
+    let new_co2 = parseInt(new_distance)*0.6 + existing_co2
+    $('#co2-text').text(new_co2);
+    return new_co2;
 
 }
 
@@ -109,8 +132,9 @@ function updateMoney(new_distance) {
     // Average mile not driven saves 0.22 pence
 
     let existing_dollar = parseInt($('#dollar-text').text());
-    $('#dollar-text').text(parseInt(new_distance)*0.22 + existing_dollar);
-
+    let new_dollar = parseInt(new_distance)*0.22 + existing_dollar
+    $('#dollar-text').text(new_dollar);
+    return new_dollar;
 }
 
 // Stackoverflow rules!
