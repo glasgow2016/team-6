@@ -68,45 +68,48 @@ $(function () {
 });
 
 function addNewDistance() {
-    console.log("Do we get here");
     let target_distance = parseInt($("#goal").text());
     let new_distance = $("#new-distance-input").val();
 
     if (!isInt(new_distance)) {
         return false;
     }
-    
     let new_percentage = new_distance/target_distance;
     let existing_percentage = 0;
     if(!bar['text']['firstChild']) {
-        console.log("Do we get in if");
         existing_percentage = 0;
     } else {
-        console.log("Do we get in the else");
         existing_percentage = bar['text']['firstChild']['data'] / target_distance;
     }
-
+    console.log("The target distance is " + target_distance + " the new distance is " + new_distance + " and the current one is " + existing_percentage);
     // updates the progress chart
-    bar.animate(new_percentage + existing_percentage);
-
-    var newCO2 = updateCO2(new_distance);
-    var newMoney = updateMoney(new_distance);
-    
-    var project_id = $('#project_id').attr('value');
-    /* update the database */
-    $.ajax({
-        type: "GET",
-        url: '/update_performance/',
-        data: {
-            'new_distance': new_distance,
-            'project_id': project_id,
-            'newCO2': newCO2,
-            'newMoney': newMoney
-        },
-        success: function(data) {
-            console.log("Successfully updated the database");
+        var newCO2;
+        var newMoney;
+        if(new_percentage + existing_percentage >= 1) {
+            newCO2 = updateCO2(target_distance);
+            newMoney = updateMoney(target_distance);
+            bar.animate(1);
+        } else {
+            bar.animate(new_percentage + existing_percentage);
+            newCO2 = updateCO2(new_distance);
+            newMoney = updateMoney(new_distance);
         }
-    });
+        
+        var project_id = $('#project_id').attr('value');
+        /* update the database */
+        $.ajax({
+            type: "GET",
+            url: '/update_performance/',
+            data: {
+                'new_distance': new_distance,
+                'project_id': project_id,
+                'newCO2': newCO2,
+                'newMoney': newMoney
+            },
+            success: function(data) {
+                console.log("Successfully updated the database");
+            }
+        });
 
     return false;
 }
