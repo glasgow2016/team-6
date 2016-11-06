@@ -14,17 +14,6 @@ def index(request):
 def walking(request):
     return render(request, 'brake_classroom/walking.html')
 
-# def quiz(request):
-#     level = request.GET['level']
-#     question_number = int(request.GET['question'])
-#     question = Question.objects.get(number=question_number, level=level)
-#     count = Question.objects.filter(level=level).count()
-#
-#     previous_question = None if question_number == 1 else question_number - 1
-#     next_question = None if question_number == count else question_number + 1
-#     return render(request, 'brake_classroom/quiz.html',
-#                   {'question': question, 'previous': previous_question, 'next': next_question})
-
 
 def cycling(request):
     return render(request, 'brake_classroom/cycling.html')
@@ -72,8 +61,6 @@ def update_performance(request):
         the_project.goal_achieved += new_distance
         the_project.money_saved = new_money
         the_project.co2_saved = new_co2
-        print("new money saved is %f" % the_project.money_saved)
-        print("new co2 saved is %f" % the_project.co2_saved)
         the_project.save()
 
         return JsonResponse({'full_distance_covered': the_project.goal_achieved})

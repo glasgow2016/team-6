@@ -38,7 +38,6 @@ $(function () {
         bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
         bar.text.style.fontSize = '2rem';
 
-        //let goal_achieved = parseInt($("#goal-achieved").text());
         let goal_achieved = parseInt($("#goal-achieved").attr('value'));
         let percentage_achieved = goal_achieved / target_distance;
         bar.animate(percentage_achieved);  // Number from 0.0 to 1.0
@@ -49,15 +48,15 @@ $(function () {
 $(function () {
     var today = moment();
 
-// Handles the form submission and
-// takes care that the necessary parts of the page are updated
-
+    // Handles the form submission and
+    // takes care that the necessary parts of the page are updated
     function cb(time) {
         $('#reportrange span').html(time.format('MMMM D, YYYY'));
         $('#final-date')
             .attr('value', time.format('YYYY-MM-DD'));
     }
 
+    // instantiates the date range picker
     $('#reportrange').daterangepicker({
         singleDatePicker: true
     }, function (date) {
@@ -68,15 +67,17 @@ $(function () {
 });
 
 function addNewDistance() {
-    let target_distance = parseInt($("#goal").text());
-    let new_distance = parseInt($("#new-distance-input").val());
-    var current_distance = parseInt($("#goal-achieved").attr('value'));
+    let target_distance = parseInt($("#goal").text()); // the distance we want to reach
+    let new_distance = parseInt($("#new-distance-input").val()); // the distance entered in the input
+    var current_distance = parseInt($("#goal-achieved").attr('value')); // the current distance we have achieved
+
     $('#goal-achieved').attr('value', new_distance + current_distance);
-    var full_distance = new_distance + current_distance;
+    var full_distance = new_distance + current_distance; // update the current distance
 
     if (!isInt(new_distance)) {
         return false;
     }
+
     let new_percentage = new_distance / target_distance;
     let existing_percentage = 0;
     if (!bar['text']['firstChild']) {
@@ -84,6 +85,7 @@ function addNewDistance() {
     } else {
         existing_percentage = bar['text']['firstChild']['data'] / target_distance;
     }
+
     // updates the progress chart
     var done = false;
     var newCO2;
@@ -115,6 +117,7 @@ function addNewDistance() {
         }
     });
 
+    // in the case when we have reached the goal
     if(done) {
         $('#modal-co2-report').html(newCO2);
         $('#modal-cash-report').html(newMoney);
@@ -126,11 +129,9 @@ function addNewDistance() {
 }
 
 function updateCO2(new_distance) {
-
     // An average day without a car saves 26lbs of CO2 ~ 12kg
     // Assuming an average day is with a car is 20 miles, a mile not
     // driven would amount to 0.6kg.
-    console.log("New distance " + new_distance);
     let existing_co2 = parseInt($('#co2-text').text());
     let new_co2 = parseInt(new_distance) * 0.6 + existing_co2;
     $('#co2-text').text(new_co2);
@@ -139,12 +140,10 @@ function updateCO2(new_distance) {
 }
 
 function updateMoney(new_distance) {
-
     // An average 20 mile day with a car
     // Average 5 miles per litre
     // Average litre price = 1.10 pounds
     // Average mile not driven saves 0.22 pence
-
     let existing_dollar = parseInt($('#dollar-text').text());
     let new_dollar = parseInt(new_distance) * 0.22 + existing_dollar
     $('#dollar-text').text(new_dollar);
