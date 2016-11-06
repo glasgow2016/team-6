@@ -53,7 +53,8 @@ $(function () {
 
     function cb(time) {
         $('#reportrange span').html(time.format('MMMM D, YYYY'));
-        $('#final-date').attr('value', time.format('YYYY-MM-DDTHH:MM:SS'));
+        $('#final-date')
+            .attr('value', time.format('YYYY-MM-DD'));
     }
 
     $('#reportrange').daterangepicker({

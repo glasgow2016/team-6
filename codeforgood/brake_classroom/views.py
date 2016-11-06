@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from django.contrib.auth import logout
-from brake_classroom.models import Question, UserProject
+from brake_classroom.models import Question, UserProject, Project
 from brake_classroom.forms import ProjectForm
+from datetime import datetime, timedelta
 
 
 def index(request):
@@ -18,8 +19,6 @@ def walking(request):
 
 
 def quiz(request):
-    print("Request")
-    print(request.GET)
     level = request.GET['level']
     question_number = int(request.GET['question'])
     question = Question.objects.get(number=question_number, level=level)
@@ -40,13 +39,13 @@ def project(request):
         context = {}
         user_project = UserProject.objects.get(user=request.user)
         context['user_project'] = user_project
-        context['project_form'] = ProjectForm()
         return render(request, 'brake_classroom/project.html', context)
     else:
-        project_form = ProjectForm(request.POST)
-
-        if project_form.is_valid():
-            new_project = project_form.save()
+            mileage = request.POST['mileage']
+            final_date = request.POST['final_date']
+            days_to_complete = (datetime.strptime(final_date, "%Y-%m-%d") - datetime.now() + timedelta(days=1)).days
+            new_project = Project(milage=mileage, complete_in=days_to_complete)
+            new_project.save()
             user_project = UserProject.objects.get(user_id=request.POST['user_id'])
             user_project.project = new_project
             user_project.save()
