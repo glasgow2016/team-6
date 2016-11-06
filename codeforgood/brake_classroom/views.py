@@ -12,10 +12,10 @@ def index(request):
 
 
 def walking(request):
-    question1 = Question.objects.get(number=1)
-    print(question1)
-    return render(request, 'brake_classroom/walking.html', {'question1': question1})
-
+    #question1 = Question.objects.get(number=1)
+    #print(question1)
+    #return render(request, 'brake_classroom/walking.html', {'question1': question1})
+    return render(request, 'brake_classroom/walking.html')
 
 def quiz(request):
     level = request.GET['level']
