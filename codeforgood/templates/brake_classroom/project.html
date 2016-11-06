@@ -47,6 +47,13 @@
             {{ project_form }}
             <input type="hidden" name="user_id" value="{{ user.id }}">
             <button type="submit">Submit</button>
+            <div class="form-group">
+                <label for="reportrange">Choose a timeframe</label>
+                <div id="reportrange" class="reportrange form-control">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                    <span id="daterange-picker-holder"></span> <b class="caret"></b>
+                </div>
+            </div>
         </form>
     {% endif %}
 {% endblock %}

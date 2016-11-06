@@ -47,6 +47,57 @@ $(function(){
 
 });
 
+/* functions about interacting with the daterange picker */
+$(function () {
+    var start = moment().subtract(14, 'days');
+    var end = moment().subtract(7, 'days');
+
+    function cb(start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    }
+
+    $('#reportrange span').daterangepicker({
+        autoUpdateInput: false,
+        locale: {
+            cancelLabel: 'Clear'
+        }
+    });
+
+    $('#reportrange').daterangepicker({
+        startDate: start,
+        endDate: end,
+        ranges: {
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }, cb);
+    cb(start, end);
+});
+
+function getDateRangePickerEndDate() {
+    /* If there is no range displayed inside the span, this means we want to get
+     * all the orders, so simply return undefined in that case
+     */
+    var span_content = $('#daterange-picker-holder').html();
+    if(span_content === ''){
+        return undefined;
+    }
+    return $('#reportrange').data('daterangepicker').endDate.format('YYYY-MM-DDT23:59:59');
+}
+
+function getDateRangePickerStartDate(){
+    /* If there is no range displayed inside the span, this means we want to get
+     * all the orders, so simply return undefined in that case
+     */
+    var span_content = $('#daterange-picker-holder').html();
+    if(span_content === ''){
+        return undefined;
+    }
+    return $('#reportrange').data('daterangepicker').startDate.format('YYYY-MM-DDT00:00:00');
+}
+
+
 function addNewDistance() {
 
     let target_distance = 2000;

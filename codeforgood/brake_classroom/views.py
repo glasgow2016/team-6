@@ -4,7 +4,6 @@ from django.shortcuts import redirect
 from django.contrib.auth import logout
 from brake_classroom.models import Question, UserProject
 from brake_classroom.forms import ProjectForm
-from django.contrib.auth.models import User
 
 
 def index(request):
